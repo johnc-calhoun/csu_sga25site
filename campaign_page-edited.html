@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abhi Siri for SGA Secretary</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #006953, #006953);
+      color: white;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header {
+      background: linear-gradient(135deg, #437B2F, #68BC4A);
+      width: 100%;
+      text-align: center;
+      padding: 20px;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    header h1 {
+      margin: 10px 0 0 0;
+      font-size: 1.8rem;
+    }
+    header h3 {
+      margin: 5px 0;
+      font-size: 1rem;
+    }
+    header img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .tagline {
+      margin: 15px;
+      font-size: 1.1rem;
+      text-align: center;
+      background: linear-gradient(135deg, #04614d, #038669);
+      padding: 10px 15px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      max-width: 90%;
+    }
+    .countdown-container {
+      text-align: center;
+      margin: 20px 0;
+      width: 100%;
+    }
+    .countdown-container h2 {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+    .countdown {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 0 10px;
+    }
+    .flip-card {
+      background: linear-gradient(135deg, #04614d, #038669);
+      padding: 12px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      font-size: 1rem;
+      font-weight: bold;
+      text-align: center;
+      min-width: 55px;
+      flex: 1 1 55px;
+    }
+    .flip-label {
+      font-size: 0.8rem;
+      margin-top: 4px;
+    }
+    @media (max-width: 500px) {
+      header h1 { font-size: 1.5rem; }
+      .tagline { font-size: 1rem; }
+      .flip-card { font-size: 0.9rem; padding: 10px; min-width: 45px; }
+    }
+    .goals {
+      background: linear-gradient(135deg, #04614d, #038669);
+      padding: 20px;
+      border-radius: 20px;
+      margin: 15px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+    .goals h2 {
+      text-align: center;
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+    .goals ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .goals li {
+      margin: 10px 0;
+      background: linear-gradient(135deg, #218771, #0f9c7d);
+      padding: 10px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+    .goals li:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+      background: linear-gradient(135deg, #1a7c66, #28a084);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="headshot_cropped.jpg" alt="Abhi Siri Photo"> <!-- Replace with actual image path -->
+    <h1>Abhi Siri for SGA Secretary</h1>
+    <h3>Cleveland State University</h3>
+  </header>
+
+  <div class="tagline">Let's create the student government you deserve.</div>
+
+  <div class="goals">
+    <h2>As your secretary, I will...</h2>
+    <ul>
+      <li>Operate at the highest standards of accountability and professionalism</li>
+      <li>Gather and work to meet student needs at every step of the SGA process</li>
+      <li>Enable SGA to seamlessly partner with students, staff, and administrators</li>
+      <li>Overhaul SGA's internal and external communications strategies</li>
+    </ul>
+  </div>
+
+  <div class="goals">
+    <h2>About Me</h2>
+    <ul>
+      <li>Computer Engineering major, Class of 2026</li>
+      <li>Currently leading a group of 21 Peer Teachers, serving over 800 engineering students</li>
+      <li>Professional experience in technical roles at the federal government and 2 Fortune 500 companies</li>
+      <li>Running to help out however I can and make SGA less of a footnote</li>
+    </ul>
+  </div>
+
+  <div class="countdown-container">
+    <h2>Countdown to SGA Elections</h2>
+    <div class="countdown">
+      <div class="flip-card"><div id="days">0</div><div class="flip-label">Days</div></div>
+      <div class="flip-card"><div id="hours">0</div><div class="flip-label">Hours</div></div>
+      <div class="flip-card"><div id="minutes">0</div><div class="flip-label">Minutes</div></div>
+      <div class="flip-card"><div id="seconds">0</div><div class="flip-label">Seconds</div></div>
+    </div>
+  </div>
+
+  <script>
+    function updateCountdown() {
+      const electionDate = new Date(Date.UTC(2025, 8, 29, 16, 0, 0)).getTime();
+      const now = new Date().getTime();
+      const distance = electionDate - now;
+
+      if (distance < 0) {
+        document.querySelector(".countdown").innerHTML = "<h1>The polls are now open!</h1>";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
